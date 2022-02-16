@@ -1,0 +1,11 @@
+.bgColor{
+    background-color: rgb(255, 238, 238);
+}
+
+.bgMain{
+    background-color: rgba(231, 229, 229, 0.541);
+}
+
+.pHidden{
+    visibility: hidden;
+}
