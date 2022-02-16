@@ -20,7 +20,7 @@ function setSavingAmount() {
     //get saving input value calling a function
     const savingLimit = parseFloat(getInputValue('saving_input'));
 
-    if (savingLimit >= 0) {
+    if (savingLimit > 0) {
         // set saving amount as a innerText
         const savingAmount = incomeAmount * (savingLimit / 100);
 
@@ -60,6 +60,7 @@ document.getElementById('btnCalculate').addEventListener('click', function () {
 
     // has money after saving 
     const moneyForExpenses = incomeAmount - savingAmount;
+
 
     // check incomeAmount, foodExpenses, rentExpenses and clothsExpenses are not smaller than 0
     // and also check the all type of expenses are lower than the actual monye 
@@ -114,10 +115,27 @@ document.getElementById('btnCalculate').addEventListener('click', function () {
 //add click event in save button
 
 document.getElementById('save_Btn').addEventListener('click', function () {
-    //set saving amount calling setSavingAmount function
-    document.getElementById('savingAmount').innerText = setSavingAmount();
+    //get saving input value
+    const savingInputValue = document.getElementById('saving_input').value;
 
-   //set remaining balance
-    document.getElementById('remaining_Balance').innerText = setRemaining();
+    //get income amount 
+    const income = parseFloat(getInputValue('income_Input'));
+
+    if (savingInputValue >= 0 && income > 0) {
+
+         //set saving amount calling setSavingAmount function
+        document.getElementById('savingAmount').innerText = setSavingAmount();
+
+        //set remaining balance
+        document.getElementById('remaining_Balance').innerText = setRemaining();
+        
+        //hide alret
+        document.getElementById('alert2').style.visibility = 'hidden';
+    } else {
+        //show alret
+        document.getElementById('alert2').style.visibility = 'visible';
+        document.getElementById('remaining_Balance').innerText = 0;
+    }
+
 
 })
