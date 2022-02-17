@@ -16,7 +16,6 @@ function setSavingAmount() {
     //get income amount
     const incomeAmount = parseFloat(getInputValue('income_Input'));
 
-
     //get saving input value calling a function
     const savingLimit = parseFloat(getInputValue('saving_input'));
 
@@ -47,7 +46,9 @@ function setRemaining() {
 
 
 
-// add click event in Calculate Button
+/* *********~~~~~~-----------------------~~~~~~~~*********
+            add click event in Calculate Button
+*********~~~~~~~-------------------------~~~~~~~********* */
 document.getElementById('btnCalculate').addEventListener('click', function () {
 
     const incomeAmount = parseFloat(getInputValue('income_Input'));
@@ -112,7 +113,9 @@ document.getElementById('btnCalculate').addEventListener('click', function () {
 
 
 
-//add click event in save button
+/* *********~~~~~~-----------------------~~~~~~~~*********
+            add click event in save button
+*********~~~~~~~-------------------------~~~~~~~********* */
 
 document.getElementById('save_Btn').addEventListener('click', function () {
     //get saving input value
@@ -123,14 +126,24 @@ document.getElementById('save_Btn').addEventListener('click', function () {
 
     if (savingInputValue >= 0 && income > 0) {
 
-         //set saving amount calling setSavingAmount function
-        document.getElementById('savingAmount').innerText = setSavingAmount();
+        const remainingAmount = setRemaining();
+        if (remainingAmount > 0) {
+             //set saving amount calling setSavingAmount function
+            document.getElementById('savingAmount').innerText = setSavingAmount();
 
-        //set remaining balance
-        document.getElementById('remaining_Balance').innerText = setRemaining();
+            //set remaining balance
+            document.getElementById('remaining_Balance').innerText = setRemaining();
         
-        //hide alret
-        document.getElementById('alert2').style.visibility = 'hidden';
+            //hide alret
+            document.getElementById('alert2').style.visibility = 'hidden';
+        } else {
+            document.getElementById('remaining_Balance').innerText = 0;
+            document.getElementById('savingAmount').innerText = 0;
+            document.getElementById('alert2').innerText = "# You do not have enough money to save!"
+            document.getElementById('alert2').style.visibility = 'visible';
+        }
+
+    
     } else {
         //show alret
         document.getElementById('alert2').style.visibility = 'visible';
